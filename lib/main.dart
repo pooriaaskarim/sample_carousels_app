@@ -10,7 +10,7 @@ void main() {
     RepositoryProvider(
       create: (final context) => ProductsRepository(),
       child: BlocProvider(
-          create: (final context) => ProductsBloc(), child: const App()),
+          create: (final context) => ProductsBloc(), child: const App(),),
     ),
   );
 }

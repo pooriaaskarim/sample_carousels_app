@@ -5,8 +5,10 @@ import 'app.opacities.dart';
 class AppThemeUtils {
   AppThemeUtils._();
 
-  static WidgetStateProperty<TextStyle?> resolveTextStyleWith(
-          {required final TextStyle? textStyle, required final Color color,}) =>
+  static WidgetStateProperty<TextStyle?> resolveTextStyleWith({
+    required final TextStyle? textStyle,
+    required final Color color,
+  }) =>
       WidgetStateProperty.resolveWith<TextStyle?>(
         (final states) {
           if (states.any(
@@ -54,17 +56,6 @@ class AppThemeUtils {
               ),
             );
           }
-          // if (states.any(
-          //   {
-          //     WidgetState.pressed,
-          //   }.contains,
-          // )) {
-          //   return textStyle?.merge(
-          //     TextStyle(
-          //       color: color.withOpacity(AppOpacities.pressStateLayerOpacity),
-          //     ),
-          //   );
-          // }
           return textStyle?.merge(
             TextStyle(
               color: color,

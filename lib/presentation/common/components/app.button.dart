@@ -187,7 +187,7 @@ class AppButton<T> extends StatefulWidget {
 
 class _AppButtonState<T> extends State<AppButton<T>> {
   late ThemeData _themeData;
-  final _WidgetStatesController = WidgetStatesController();
+  final _widgetStatesController = WidgetStatesController();
 
   bool get _isLoading => widget.apiStatus is LoadingApiStatus;
 
@@ -232,7 +232,7 @@ class _AppButtonState<T> extends State<AppButton<T>> {
         AppButtonType.filled => FilledButton(
             onPressed: !_isLoading ? widget.onPressed : null,
             onLongPress: !_isLoading ? widget.onLongPressed : null,
-            statesController: _WidgetStatesController,
+            statesController: _widgetStatesController,
             style: widget.style,
             child: _child,
           ),
@@ -240,20 +240,20 @@ class _AppButtonState<T> extends State<AppButton<T>> {
             onPressed: !_isLoading ? widget.onPressed : null,
             onLongPress: !_isLoading ? widget.onLongPressed : null,
             style: widget.style,
-            statesController: _WidgetStatesController,
+            statesController: _widgetStatesController,
             child: _child,
           ),
         AppButtonType.outlined => OutlinedButton(
             onPressed: !_isLoading ? widget.onPressed : null,
             onLongPress: !_isLoading ? widget.onLongPressed : null,
             style: widget.style,
-            statesController: _WidgetStatesController,
+            statesController: _widgetStatesController,
             child: _child,
           ),
         AppButtonType.elevated => ElevatedButton(
             onPressed: !_isLoading ? widget.onPressed : null,
             onLongPress: !_isLoading ? widget.onLongPressed : null,
-            statesController: _WidgetStatesController,
+            statesController: _widgetStatesController,
             style: widget.style,
             child: _child,
           ),
@@ -292,7 +292,7 @@ class _AppButtonState<T> extends State<AppButton<T>> {
       );
 
   Widget _text() => ValueListenableBuilder<Set<WidgetState>>(
-        valueListenable: _WidgetStatesController,
+        valueListenable: _widgetStatesController,
         builder: (final context, final value, final child) => AppText(
           widget.text,
           style: widget.textStyle ??

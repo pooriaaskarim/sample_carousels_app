@@ -21,23 +21,14 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Product {
   String get type => throw _privateConstructorUsedError;
-
   String get title => throw _privateConstructorUsedError;
-
   String get image => throw _privateConstructorUsedError;
-
   String get price => throw _privateConstructorUsedError;
-
   String get city => throw _privateConstructorUsedError;
-
   String get presenter => throw _privateConstructorUsedError;
-
   String get runtime => throw _privateConstructorUsedError;
-
   String get rate => throw _privateConstructorUsedError;
-
   String get url => throw _privateConstructorUsedError;
-
   String get id => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
@@ -53,7 +44,6 @@ mixin _$Product {
 abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res, Product>;
-
   @useResult
   $Res call(
       {String type,
@@ -75,7 +65,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -145,7 +134,6 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$$ProductImplCopyWith(
           _$ProductImpl value, $Res Function(_$ProductImpl) then) =
       __$$ProductImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -330,31 +318,22 @@ abstract class _Product implements Product {
 
   @override
   String get type;
-
   @override
   String get title;
-
   @override
   String get image;
-
   @override
   String get price;
-
   @override
   String get city;
-
   @override
   String get presenter;
-
   @override
   String get runtime;
-
   @override
   String get rate;
-
   @override
   String get url;
-
   @override
   String get id;
 
