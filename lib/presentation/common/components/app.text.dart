@@ -664,16 +664,17 @@ class AppText extends StatelessWidget {
     this.textHeightBehavior,
     this.textScaler,
     this.textWidthBasis,
-    this.type,
+    final _AppTextEnum? type,
     super.key,
-  }) : assert(
+  })  : _type = type,
+        assert(
           textSpan != null || data != null,
           'Provide one of the following: String data or TextSpan textSpan',
         );
   final String? data;
   final TextSpan? textSpan;
 
-  final _AppTextEnum? type;
+  final _AppTextEnum? _type;
 
   final Color? selectionColor;
   final Locale? locale;
@@ -696,7 +697,7 @@ class AppText extends StatelessWidget {
     final isTextMode = data != null;
 
     final TextStyle? resolvedTextStyle =
-        type?.getTextStyle(context)?.merge(style) ?? style;
+        _type?.getTextStyle(context)?.merge(style) ?? style;
 
     final resolvedDirection = textDirection ??
         AppUtils.estimateDirectionOfText(data ?? textSpan!.toPlainText());

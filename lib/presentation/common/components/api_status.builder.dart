@@ -35,9 +35,10 @@ class ApiStatusBuilder<T> extends StatelessWidget {
             success: onSuccess,
             failure: (final message) =>
                 onFailure?.call(
-                    message,
-                    () => BlocProvider.of<ApiStatusBloc>(context)
-                        .add(ApiStatusEvent.call(apiCall))) ??
+                  message,
+                  () => BlocProvider.of<ApiStatusBloc>(context)
+                      .add(ApiStatusEvent.call(apiCall)),
+                ) ??
                 RetryWidget(
                   onRetry: () => BlocProvider.of<ApiStatusBloc>(context)
                       .add(ApiStatusEvent.call(apiCall)),

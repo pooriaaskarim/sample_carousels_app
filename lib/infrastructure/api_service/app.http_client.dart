@@ -1,22 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class AppHttpClient {
-  AppHttpClient() {
-    dio.interceptors.addAll([
-      if (kDebugMode)
-        PrettyDioLogger(
-          request: true,
-          requestHeader: true,
-          requestBody: true,
-          responseHeader: false,
-          responseBody: !false,
-          error: true,
-          compact: true,
-        ),
-    ]);
-  }
+  AppHttpClient();
 
   Dio dio = Dio(
     BaseOptions(
