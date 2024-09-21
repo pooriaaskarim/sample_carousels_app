@@ -12,10 +12,10 @@ import 'app.route_path.dart';
 class AppRouter {
   AppRouter._();
 
-  static final navigatorKey = GlobalKey<NavigatorState>();
+  static final _navigatorKey = GlobalKey<NavigatorState>();
 
   static GoRouter router = GoRouter(
-    navigatorKey: navigatorKey,
+    navigatorKey: _navigatorKey,
     initialLocation: AppRoutePaths.splash,
     onException: (final context, final state, final router) {
       router.goNamed(AppRouteNames.notFound);
@@ -25,13 +25,11 @@ class AppRouter {
         path: AppRoutePaths.splash,
         name: AppRouteNames.splash,
         builder: (final context, final state) {
-          if (state.fullPath == AppRoutePaths.splash) {
-            Future.delayed(const Duration(milliseconds: 680))
-                .then((final _) async {
-              context.goNamed(AppRouteNames.products);
-            });
-          }
-
+          Future.delayed(const Duration(milliseconds: 680)).then(
+            (final _) {
+              router.pushReplacementNamed(AppRouteNames.products);
+            },
+          );
           return const SplashScreen();
         },
       ),
