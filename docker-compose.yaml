@@ -1,0 +1,20 @@
+services:
+  carousel-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: carousel-sample:latest
+    container_name: CarouselApp
+    ports:
+      - "88:80"
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+    command: >
+      sh -c "echo 'Access App at: http://127.0.0.1:88' && nginx -g 'daemon off;'"
+
+
+networks:
+  app-network:
+    driver: bridge
