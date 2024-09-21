@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/product/product.model.dart';
-import '../../../common/components/app.icon.dart';
-import '../../../common/components/app.loading.dart';
-import '../../../common/components/app.text.dart';
-import '../../../common/utils/app.sizes.dart';
-import '../../../common/utils/app.utils.dart';
+import '../../common/components/app.icon.dart';
+import '../../common/components/app.loading.dart';
+import '../../common/components/app.text.dart';
+import '../../common/utils/app.sizes.dart';
+import '../../common/utils/app.utils.dart';
 
 class ProductStats extends StatelessWidget {
   const ProductStats({required this.product, super.key});
@@ -128,7 +128,7 @@ class ProductTitle extends StatelessWidget {
               ),
             ),
           ),
-        ]
+        ],
       ],
     );
   }
@@ -153,7 +153,9 @@ class ProductImage extends StatelessWidget {
 
   final Product product;
   final Widget Function(
-      BuildContext context, ImageProvider<Object> imageProvider)? imageBuilder;
+    BuildContext context,
+    ImageProvider<Object> imageProvider,
+  )? imageBuilder;
 
   final double? width;
   final double? height;
@@ -176,7 +178,7 @@ class ProductImage extends StatelessWidget {
           ),
         ),
         errorWidget: (final context, final url, final error) =>
-            const Center(child: Icon(Icons.error)),
+            const Center(child: Icon(Icons.file_download_off)),
         width: width,
         height: height,
         fit: fit,

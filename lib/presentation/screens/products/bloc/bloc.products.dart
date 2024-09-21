@@ -17,7 +17,11 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       add(_Update(state.products));
     });
     on<_ProductVisited>((final event, final emit) {
-      state.products.insert(0, state.products.removeAt(event.productIndex));
+      state.products.insert(
+        0,
+        state.products.removeAt(state.products.indexOf(event.product)),
+      );
+      emit(ProductsState.state(products: state.products));
     });
   }
 }

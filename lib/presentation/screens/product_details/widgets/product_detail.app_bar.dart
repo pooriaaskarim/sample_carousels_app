@@ -3,7 +3,7 @@ import 'package:photo_view/photo_view.dart';
 
 import '../../../../domain/product/product.model.dart';
 import '../../../common/utils/app.sizes.dart';
-import '../../common/product/product.widgets.dart';
+import '../../../components/product/product.widgets.dart';
 
 class ProductDetailsAppBar extends StatelessWidget {
   const ProductDetailsAppBar({
@@ -38,26 +38,7 @@ class ProductDetailsAppBar extends StatelessWidget {
             ),
             background: InkWell(
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (final context) => Dialog(
-                    child: ProductImage(
-                      product: product,
-                      imageBuilder: (final _, final imageProvider) => PhotoView(
-                        backgroundDecoration: BoxDecoration(
-                          border: Border.all(
-                            width: 0.3,
-                            color: themeData.colorScheme.onSurface,
-                          ),
-                        ),
-                        strictScale: true,
-                        minScale: 0.5,
-                        imageProvider: imageProvider,
-                        tightMode: true,
-                      ),
-                    ),
-                  ),
-                );
+                _showPhoto(context, themeData);
               },
               child: ProductImage(
                 product: product,
@@ -98,4 +79,29 @@ class ProductDetailsAppBar extends StatelessWidget {
       expandedHeight: 360,
     );
   }
+
+  Future<dynamic> _showPhoto(
+    final BuildContext context,
+    final ThemeData themeData,
+  ) async =>
+      showDialog(
+        context: context,
+        builder: (final context) => Dialog(
+          child: ProductImage(
+            product: product,
+            imageBuilder: (final _, final imageProvider) => PhotoView(
+              backgroundDecoration: BoxDecoration(
+                border: Border.all(
+                  width: 0.3,
+                  color: themeData.colorScheme.onSurface,
+                ),
+              ),
+              strictScale: true,
+              minScale: 0.5,
+              imageProvider: imageProvider,
+              tightMode: true,
+            ),
+          ),
+        ),
+      );
 }

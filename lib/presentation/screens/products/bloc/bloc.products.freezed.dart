@@ -20,21 +20,21 @@ mixin _$ProductsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) update,
     required TResult Function() shuffle,
-    required TResult Function(int productIndex) productVisited,
+    required TResult Function(Product product) productVisited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Product> products)? update,
     TResult? Function()? shuffle,
-    TResult? Function(int productIndex)? productVisited,
+    TResult? Function(Product product)? productVisited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? update,
     TResult Function()? shuffle,
-    TResult Function(int productIndex)? productVisited,
+    TResult Function(Product product)? productVisited,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -109,7 +109,7 @@ class __$$UpdateImplCopyWithImpl<$Res>
   }) {
     return _then(_$UpdateImpl(
       null == products
-          ? _value._products
+          ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
     ));
@@ -119,32 +119,15 @@ class __$$UpdateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateImpl implements _Update {
-  const _$UpdateImpl(final List<Product> products) : _products = products;
+  const _$UpdateImpl(this.products);
 
-  final List<Product> _products;
   @override
-  List<Product> get products {
-    if (_products is EqualUnmodifiableListView) return _products;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
+  final List<Product> products;
 
   @override
   String toString() {
     return 'ProductsEvent.update(products: $products)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateImpl &&
-            const DeepCollectionEquality().equals(other._products, _products));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
   /// Create a copy of ProductsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -159,7 +142,7 @@ class _$UpdateImpl implements _Update {
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) update,
     required TResult Function() shuffle,
-    required TResult Function(int productIndex) productVisited,
+    required TResult Function(Product product) productVisited,
   }) {
     return update(products);
   }
@@ -169,7 +152,7 @@ class _$UpdateImpl implements _Update {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Product> products)? update,
     TResult? Function()? shuffle,
-    TResult? Function(int productIndex)? productVisited,
+    TResult? Function(Product product)? productVisited,
   }) {
     return update?.call(products);
   }
@@ -179,7 +162,7 @@ class _$UpdateImpl implements _Update {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? update,
     TResult Function()? shuffle,
-    TResult Function(int productIndex)? productVisited,
+    TResult Function(Product product)? productVisited,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -265,20 +248,11 @@ class _$ShuffleImpl implements _Shuffle {
   }
 
   @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ShuffleImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) update,
     required TResult Function() shuffle,
-    required TResult Function(int productIndex) productVisited,
+    required TResult Function(Product product) productVisited,
   }) {
     return shuffle();
   }
@@ -288,7 +262,7 @@ class _$ShuffleImpl implements _Shuffle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Product> products)? update,
     TResult? Function()? shuffle,
-    TResult? Function(int productIndex)? productVisited,
+    TResult? Function(Product product)? productVisited,
   }) {
     return shuffle?.call();
   }
@@ -298,7 +272,7 @@ class _$ShuffleImpl implements _Shuffle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? update,
     TResult Function()? shuffle,
-    TResult Function(int productIndex)? productVisited,
+    TResult Function(Product product)? productVisited,
     required TResult orElse(),
   }) {
     if (shuffle != null) {
@@ -352,7 +326,9 @@ abstract class _$$ProductVisitedImplCopyWith<$Res> {
           $Res Function(_$ProductVisitedImpl) then) =
       __$$ProductVisitedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int productIndex});
+  $Res call({Product product});
+
+  $ProductCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -368,41 +344,39 @@ class __$$ProductVisitedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? productIndex = null,
+    Object? product = null,
   }) {
     return _then(_$ProductVisitedImpl(
-      null == productIndex
-          ? _value.productIndex
-          : productIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
     ));
+  }
+
+  /// Create a copy of ProductsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get product {
+    return $ProductCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ProductVisitedImpl implements _ProductVisited {
-  const _$ProductVisitedImpl(this.productIndex);
+  const _$ProductVisitedImpl(this.product);
 
   @override
-  final int productIndex;
+  final Product product;
 
   @override
   String toString() {
-    return 'ProductsEvent.productVisited(productIndex: $productIndex)';
+    return 'ProductsEvent.productVisited(product: $product)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProductVisitedImpl &&
-            (identical(other.productIndex, productIndex) ||
-                other.productIndex == productIndex));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, productIndex);
 
   /// Create a copy of ProductsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -418,9 +392,9 @@ class _$ProductVisitedImpl implements _ProductVisited {
   TResult when<TResult extends Object?>({
     required TResult Function(List<Product> products) update,
     required TResult Function() shuffle,
-    required TResult Function(int productIndex) productVisited,
+    required TResult Function(Product product) productVisited,
   }) {
-    return productVisited(productIndex);
+    return productVisited(product);
   }
 
   @override
@@ -428,9 +402,9 @@ class _$ProductVisitedImpl implements _ProductVisited {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(List<Product> products)? update,
     TResult? Function()? shuffle,
-    TResult? Function(int productIndex)? productVisited,
+    TResult? Function(Product product)? productVisited,
   }) {
-    return productVisited?.call(productIndex);
+    return productVisited?.call(product);
   }
 
   @override
@@ -438,11 +412,11 @@ class _$ProductVisitedImpl implements _ProductVisited {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<Product> products)? update,
     TResult Function()? shuffle,
-    TResult Function(int productIndex)? productVisited,
+    TResult Function(Product product)? productVisited,
     required TResult orElse(),
   }) {
     if (productVisited != null) {
-      return productVisited(productIndex);
+      return productVisited(product);
     }
     return orElse();
   }
@@ -483,9 +457,9 @@ class _$ProductVisitedImpl implements _ProductVisited {
 }
 
 abstract class _ProductVisited implements ProductsEvent {
-  const factory _ProductVisited(final int productIndex) = _$ProductVisitedImpl;
+  const factory _ProductVisited(final Product product) = _$ProductVisitedImpl;
 
-  int get productIndex;
+  Product get product;
 
   /// Create a copy of ProductsEvent
   /// with the given fields replaced by the non-null parameter values.
