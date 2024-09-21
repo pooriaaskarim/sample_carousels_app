@@ -6,6 +6,7 @@ import 'package:sample_carousels_app/presentation/screens/products/widgets/produ
 import '../../../domain/product/product.model.dart';
 import '../../../infrastructure/repositories/products.repository.dart';
 import '../../common/components/api_status.builder.dart';
+import '../../common/components/app.text.dart';
 import '../../common/utils/app.sizes.dart';
 import '../../common/utils/app.utils.responsive.dart';
 import 'bloc/bloc.products.dart';
@@ -61,6 +62,9 @@ class ProductsScreen extends StatelessWidget {
           child: CarouselSlider.builder(
             itemCount: products.length,
             itemBuilder: (final context, final index, final realIndex) {
+              if (products.isEmpty) {
+                return Center(child: AppText.bodyLarge('Nothing Here!'));
+              }
               final product = products[index];
               return ProductCard(product: product);
             },

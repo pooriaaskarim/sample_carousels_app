@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../domain/product/product.model.dart';
 import '../../../common/components/app.text.dart';
+import '../../../common/routes/app.route_name.dart';
+import '../../../common/routes/app.route_parameters.dart';
 import '../../../common/theme/app.elevations.dart';
 import '../../../common/utils/app.constants.dart';
 import '../../../common/utils/app.sizes.dart';
 import '../../../common/utils/app.utils.dart';
 import '../../common/product/product.widgets.dart';
-import '../../product_details/screen.product_details.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -33,11 +35,10 @@ class ProductCard extends StatelessWidget {
         child: InkWell(
           borderRadius: borderRadius,
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (final context) =>
-                    ProductDetailsScreen(product: product),
-              ),
+            context.goNamed(
+              AppRouteNames.productDetails,
+              pathParameters: {AppRouteParameters.productId: product.id},
+              // queryParameters: {AppRouteParameters.productId: product.id},
             );
           },
           child: Stack(
