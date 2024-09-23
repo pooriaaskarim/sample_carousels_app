@@ -5,7 +5,8 @@ RUN apt-get update
 RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback lib32stdc++6 python3
 RUN apt-get clean
 
-
+RUN export PUB_HOSTED_URL="https://pub.flutter-io.cn"
+RUN export FLUTTER_STORAGE_BASE_URL="https://storage.flutter-io.cn"
 RUN git clone --progress --verbose -b stable https://github.com/flutter/flutter.git /usr/local/flutter
 
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"

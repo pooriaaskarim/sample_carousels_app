@@ -3,7 +3,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: carousel-sample:latest
+      cache_from:
+        - nginx
+        - debian
+    image: carousel-pwa
     container_name: CarouselApp
     ports:
       - "88:80"
