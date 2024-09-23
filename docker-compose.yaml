@@ -6,7 +6,7 @@ services:
       cache_from:
         - nginx
         - debian
-    image: carousel-pwa
+    image: ghcr.io/pooriaaskarim/carousel-pwa:latest
     container_name: CarouselApp
     ports:
       - "88:80"
