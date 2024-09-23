@@ -22,7 +22,7 @@ Sample app implemented as part of a PoS, simply a Carousl list and a detials rep
 ## Sleeves up, Hands On Code
 
 
-+ Pull the repository::Maseter and setup your build environment. CarouselApp is build with **Flutter**, uses three layers to keep Code nice and clean:
++ Pull the repository.Master and setup your build environment. CarouselApp is build with **Flutter**, uses three layers to keep Code nice and clean:
   - Domain
       Hold Entities of the project
   - Infrastructure
