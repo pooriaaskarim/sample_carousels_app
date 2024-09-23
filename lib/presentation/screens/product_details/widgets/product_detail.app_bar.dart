@@ -3,6 +3,7 @@ import 'package:photo_view/photo_view.dart';
 
 import '../../../../domain/product/product.model.dart';
 import '../../../common/utils/app.sizes.dart';
+import '../../../common/utils/app.utils.dart';
 import '../../../components/product/product.widgets.dart';
 
 class ProductDetailsAppBar extends StatelessWidget {
@@ -24,21 +25,31 @@ class ProductDetailsAppBar extends StatelessWidget {
 
           return FlexibleSpaceBar(
             titlePadding: const EdgeInsets.only(
-              bottom: AppSizes.points_64 + AppSizes.points_16,
-              left: AppSizes.points_12,
-              right: AppSizes.points_12,
+              bottom: AppSizes.points_64 + AppSizes.points_24,
+              left: AppSizes.points_32,
+              right: AppSizes.points_32,
             ),
-            centerTitle: true,
             title: AnimatedOpacity(
               duration: const Duration(milliseconds: 100),
               opacity: top > 180 ? 1.0 : 0.0,
-              child: ProductTitle(
-                product: product,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ProductTitle(
+                      product: product,
+                    ),
+                  ),
+                  AppUtils.horizontalSpacer(),
+                  ProductBadge(
+                    product: product,
+                    size: AppSizes.points_24,
+                  ),
+                ],
               ),
             ),
             background: InkWell(
               onTap: () {
-                _showPhoto(context, themeData);
+                _showPhoto(context);
               },
               child: ProductImage(
                 product: product,
@@ -67,8 +78,8 @@ class ProductDetailsAppBar extends StatelessWidget {
       ),
       title: ProductTitle(
         product: product,
-        hideBadge: true,
       ),
+      centerTitle: false,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(AppSizes.points_64),
         child: Padding(
@@ -82,7 +93,6 @@ class ProductDetailsAppBar extends StatelessWidget {
 
   Future<dynamic> _showPhoto(
     final BuildContext context,
-    final ThemeData themeData,
   ) async =>
       showDialog(
         context: context,
@@ -90,12 +100,6 @@ class ProductDetailsAppBar extends StatelessWidget {
           child: ProductImage(
             product: product,
             imageBuilder: (final _, final imageProvider) => PhotoView(
-              backgroundDecoration: BoxDecoration(
-                border: Border.all(
-                  width: 0.3,
-                  color: themeData.colorScheme.onSurface,
-                ),
-              ),
               strictScale: true,
               minScale: 0.5,
               imageProvider: imageProvider,

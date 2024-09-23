@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../common/components/app.button.dart';
 import '../../common/components/app.text.dart';
 import '../../common/routes/app.route_name.dart';
 import '../../common/utils/app.utils.dart';
@@ -26,11 +25,11 @@ class NotFoundScreen extends StatelessWidget {
               ),
               AppText.bodyLarge('Nothing to show!'),
               AppUtils.verticalSpacer(),
-              AppButton.text(
+              TextButton(
                 onPressed: () {
                   context.goNamed(AppRouteNames.splash);
                 },
-                text: 'Get Back',
+                child: AppText('Get Back'),
               ),
             ],
           ),

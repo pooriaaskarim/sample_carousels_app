@@ -7,10 +7,9 @@ import 'presentation/screens/products/bloc/bloc.products.dart';
 
 void main() {
   runApp(
-    RepositoryProvider(
-      create: (final context) => ProductsRepository(),
-      child: BlocProvider(
-          create: (final context) => ProductsBloc(), child: const App(),),
+    BlocProvider(
+      create: (final context) => ProductsBloc(repository: ProductsRepository()),
+      child: const App(),
     ),
   );
 }

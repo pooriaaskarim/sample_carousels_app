@@ -7,7 +7,6 @@ import '../utils/app.constants.dart';
 import '../utils/app.sizes.dart';
 import '../utils/app.utils.dart';
 import '../utils/app.utils.responsive.dart';
-import 'app.button.dart';
 import 'app.text.dart';
 
 const __defaultDismissDuration = Duration(seconds: 3);
@@ -357,11 +356,12 @@ class InAppNotification {
           textDirection: AppUtils.estimateDirectionOfText(_message),
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            AppButton.text(
-              contentPadding: EdgeInsets.zero,
-              text: _action!.label,
-              textStyle: AppFonts.textTheme.labelMedium
-                  ?.copyWith(color: _foregroundColor),
+            TextButton(
+              child: AppText(
+                _action!.label,
+                style: AppFonts.textTheme.labelMedium
+                    ?.copyWith(color: _foregroundColor),
+              ),
               onPressed: () {
                 _action.onPressed();
                 dispose();

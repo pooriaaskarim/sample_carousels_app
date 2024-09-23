@@ -8,16 +8,62 @@ import '../../common/components/app.text.dart';
 import '../../common/utils/app.sizes.dart';
 import '../../common/utils/app.utils.dart';
 
-class ProductStats extends StatelessWidget {
-  const ProductStats({required this.product, super.key});
+class ProductTitle extends StatelessWidget {
+  const ProductTitle({
+    required this.product,
+    this.fontSize,
+    this.textColor,
+    this.fontWeight,
+    super.key,
+  });
 
   final Product product;
+  final double? fontSize;
+  final Color? textColor;
+  final FontWeight? fontWeight;
+
+  @override
+  Widget build(final BuildContext context) => AppText.titleLarge(
+        product.title,
+        maxLines: 2,
+        overflow: TextOverflow.clip,
+        mergeWith: TextStyle(
+          fontWeight: fontWeight ?? FontWeight.bold,
+          fontSize: fontSize,
+          color: textColor,
+        ),
+      );
+}
+
+class ProductStats extends StatelessWidget {
+  const ProductStats({required this.product, this.overlayColor, super.key});
+
+  final Color? overlayColor;
+  final Product product;
+
+  Widget _detail({
+    required final Widget icon,
+    required final String value,
+  }) =>
+      Column(
+        children: [
+          icon,
+          AppUtils.verticalSpacer(AppSizes.points_4),
+          AppText.bodyMedium(
+            value,
+            mergeWith: TextStyle(
+              color: overlayColor,
+            ),
+          ),
+        ],
+      );
 
   Widget _vDivider(final ThemeData themeData) => VerticalDivider(
-        color: themeData.colorScheme.onSurface,
-        thickness: 2,
-        indent: AppSizes.points_12,
-        endIndent: AppSizes.points_12,
+        color:
+            (overlayColor ?? themeData.colorScheme.onSurface).withOpacity(0.30),
+        thickness: 0.8,
+        indent: AppSizes.points_16,
+        endIndent: AppSizes.points_16,
       );
 
   @override
@@ -30,27 +76,31 @@ class ProductStats extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _detail(
-            icon: const Icon(
+            icon: AppText.titleLarge(
+              'Runtime',
+              mergeWith: TextStyle(
+                color: overlayColor,
+                fontSize: AppSizes.points_16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            value:
+                '${product.runtime} time${int.parse(product.runtime) > 1 ? 's' : ''}',
+          ),
+          _vDivider(themeData),
+          _detail(
+            icon: Icon(
               Icons.attach_money,
-              size: AppSizes.points_32,
+              size: AppSizes.points_24,
+              color: overlayColor,
             ),
             value: product.price,
           ),
           _vDivider(themeData),
           _detail(
-            icon: AppText.titleLarge(
-              'Runtime',
-              mergeWith: const TextStyle(
-                fontSize: AppSizes.points_24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            value: product.runtime,
-          ),
-          _vDivider(themeData),
-          _detail(
-            icon: const Icon(
-              size: AppSizes.points_32,
+            icon: Icon(
+              size: AppSizes.points_24,
+              color: overlayColor,
               Icons.star,
             ),
             value: '${(double.tryParse(product.rate) ?? 0) / 2}',
@@ -61,80 +111,43 @@ class ProductStats extends StatelessWidget {
   }
 }
 
-Widget _detail({
-  required final Widget icon,
-  required final String value,
-}) =>
-    Column(
-      children: [
-        icon,
-        AppUtils.verticalSpacer(AppSizes.points_4),
-        AppText.bodyLarge(
-          value,
-          mergeWith: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    );
-
-class ProductTitle extends StatelessWidget {
-  const ProductTitle({
+class ProductBadge extends StatelessWidget {
+  const ProductBadge({
     required this.product,
-    this.hideBadge,
-    this.fontSize,
+    this.size = AppSizes.points_32,
     super.key,
   });
 
   final Product product;
-  final bool? hideBadge;
-  final double? fontSize;
+  final double size;
 
   @override
   Widget build(final BuildContext context) {
-    const goldColor = Color(0xFFE19804);
+    const goldColor = Color(0xFFD59210);
     const silverColor = Color(0xFFB8B8B8);
-    return Row(
-      // alignment: WrapAlignment.start,
-      // crossAxisAlignment: WrapCrossAlignment.start,
-      // runSpacing: AppSizes.points_8,
-      // spacing: AppSizes.points_8,
-      // direction: Axis.horizontal,
-      children: [
-        Flexible(
-          flex: 3,
-          child: AppText.titleLarge(
-            product.title,
-            maxLines: 2,
-            overflow: TextOverflow.clip,
-            mergeWith: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: fontSize,
-            ),
-          ),
-        ),
-        if (_hasBadge) ...[
-          Flexible(
-            flex: 1,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: AppSizes.points_4),
-              child: AppIcon(
-                iconName: 'golden_badge.png',
-                boxFit: BoxFit.cover,
-                color:
-                    double.parse(product.rate) <= 7.5 ? silverColor : goldColor,
-                size: AppSizes.points_32,
-              ),
-            ),
-          ),
-        ],
-      ],
-    );
-  }
 
-  bool get _hasBadge =>
-      (double.parse(product.rate) > 5) && !(hideBadge ?? false);
+    return double.parse(product.rate) > 5
+        ? Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
+                  blurRadius: 10.0,
+                  spreadRadius: 0,
+                ),
+              ],
+            ),
+            child: AppIcon(
+              iconName: 'golden_badge.png',
+              boxFit: BoxFit.cover,
+              color:
+                  double.parse(product.rate) <= 7.5 ? silverColor : goldColor,
+              size: size,
+            ),
+          )
+        : const SizedBox.shrink();
+  }
 }
 
 class ProductImage extends StatelessWidget {

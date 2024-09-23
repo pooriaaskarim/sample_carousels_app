@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../theme/components_theme/app.theme_data.button.filled.dart';
 import '../utils/app.sizes.dart';
 import '../utils/app.utils.dart';
-import 'app.button.dart';
 import 'app.text.dart';
 
 class RetryWidget extends StatelessWidget {
@@ -32,12 +32,12 @@ class RetryWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               AppUtils.verticalSpacer(),
-              AppButton.filled(
-                onPressed: onRetry,
-                text: 'Retry',
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: AppSizes.points_8,
+              FilledButton(
+                style: AppFilledButtonThemeData.errorStyle(
+                  Theme.of(context).colorScheme,
                 ),
+                onPressed: onRetry,
+                child: AppText('Retry'),
               ),
             ],
           ),
